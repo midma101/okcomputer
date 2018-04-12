@@ -3,12 +3,13 @@ module OkComputer
     # Public: Return the schema version of the database
     def check
       mark_message "Schema version: #{schema_version}"
+      set_component_type("datastore")
     rescue ConnectionFailed => e
       mark_failure
       mark_message "Error: '#{e}'"
     end
 
-    # Public: The scema version of the app's database
+    # Public: The schema version of the app's database
     #
     # Returns a String with the version number
     def schema_version

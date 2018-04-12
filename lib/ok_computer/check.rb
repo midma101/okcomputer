@@ -10,6 +10,8 @@ module OkComputer
     attr_accessor :message
     # Float::NAN by default, set by #run to the elapsed time to run #check
     attr_accessor :time
+    # nil by default, set by #check to one of several available enums
+    attr_accessor :component_type
 
     # Public: Run the check
     def run
@@ -85,6 +87,10 @@ module OkComputer
       self.time = Benchmark.realtime do
         yield
       end
+    end
+
+    def set_component_type(type)
+      self.component_type = type
     end
 
     CheckNotDefined = Class.new(StandardError)

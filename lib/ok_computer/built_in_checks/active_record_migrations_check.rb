@@ -5,6 +5,7 @@ module OkComputer
     def check
       return unsupported unless ActiveRecord::Migrator.respond_to?(:needs_migration?)
 
+      set_component_type("datastore")
       if ActiveRecord::Migrator.needs_migration?
         mark_failure
         mark_message "Pending migrations"

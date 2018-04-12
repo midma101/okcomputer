@@ -37,7 +37,7 @@ module OkComputer
     def respond(data, status)
       respond_to do |format|
          format.any(:text, :html) { render plain: data, status: status, content_type: 'text/plain' }
-         format.json { render json: data, status: status }
+         format.json { render json: OkComputer::CheckCollectionPresenter.new(data).list }
       end
     end
 
