@@ -7,7 +7,7 @@ module OkComputer
 
     def show
       {
-        "componentType": @check.registrant_name,
+        "componentType": @check.component_type,
         "metric_value": @check.time,
         "metric_unit": "ms",
         "status": @check.failure_occurred ? "fail" : "pass",

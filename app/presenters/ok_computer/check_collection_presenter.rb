@@ -8,7 +8,11 @@ module OkComputer
     def list
       {
         status: @check_collection.success? ? "pass" : "fail",
-        details: @check_collection.checks.map{ |check| OkComputer::CheckPresenter.new(check).show },
+        description: "Checks run - #{@check_collection.check_names.to_s}",
+        details: @check_collection.checks.reduce({}) { |memo, check|
+          memo[check.registrant_name] = OkComputer::CheckPresenter.new(check).show
+          memo
+        }
       }
     end
   end
